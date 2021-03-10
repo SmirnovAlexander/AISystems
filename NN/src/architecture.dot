@@ -1,0 +1,66 @@
+digraph G {
+
+     graph[ fontname = "Helvetica-Oblique",
+            fontsize = 12,
+            label = "",
+            size = "7.75,10.25" ];
+
+    rankdir = LR;
+    splines=false;
+    edge[style=invis];
+    ranksep= 1.4;
+    {
+        node [shape=circle, color=chartreuse, style=filled, fillcolor=chartreuse];
+        x1 [label=<a<sub>1</sub><sup>(1)</sup>>];
+        x2 [label=<a<sub>2</sub><sup>(1)</sup>>];
+        x3 [label=<a<sub>3</sub><sup>(1)</sup>>];
+        x4 [label=<a<sub>4</sub><sup>(1)</sup>>];
+    }
+    {
+        node [shape=circle, color=dodgerblue, style=filled, fillcolor=dodgerblue];
+        z12 [label=<z<sub>1</sub><sup>(2)</sup>>];
+        z22 [label=<z<sub>2</sub><sup>(2)</sup>>];
+        z32 [label=<z<sub>3</sub><sup>(2)</sup>>];
+    }
+    {
+        node [shape=circle, color=blue, style=filled, fillcolor=dodgerblue];
+        a12 [label=<a<sub>1</sub><sup>(2)</sup>>];
+        a22 [label=<a<sub>2</sub><sup>(2)</sup>>];
+        a32 [label=<a<sub>3</sub><sup>(2)</sup>>];
+    }
+    {
+        node [shape=circle, color=coral1, style=filled, fillcolor=coral1];
+        O1 [label=<y1>];
+    }
+    {
+        rank=same;
+        x1->x2->x3->x4;
+    }
+    {
+        rank=same;
+        z12->z22->z32;
+    }
+    {
+        rank=same;
+        a12->a22->a32;
+    }
+    {
+        rank=same;
+        O1;
+    }
+    l0 [shape=plaintext, label="layer 1 (input layer)"];
+    l0->x1;
+    {rank=same; l0;x1};
+    l1 [shape=plaintext, label="layer 2 (hidden layer)"];
+    l1->a12;
+    {rank=same; l1;a12};
+    l3 [shape=plaintext, label="layer 3 (output layer)"];
+    l3->O1;
+    {rank=same; l3;O1};
+    edge[style=solid, tailport=e, headport=w];
+    {x1; x2; x3; x4} -> {z12;z22;z32} ;
+    {z12} -> {a12};
+    {z22} -> {a22};
+    {z32} -> {a32};
+    {a12;a22;a32} -> {O1};
+}
